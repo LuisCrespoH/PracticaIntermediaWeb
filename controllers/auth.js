@@ -156,5 +156,27 @@ const updatePersonalDataCtrl = async (req, res) => {
         handleHttpError(res, "ERROR_UPDATING_USER");
     }
 };
+const updateCompanyCtrl = async (req, res) => {
+    try {
+        const userId = req.user._id; // ID del usuario autenticado
+        let { company } = matchedData(req); // Validar datos del cuerpo
 
-module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl };
+        // Actualizar usuario en la base de datos
+        const updatedUser = await usersModel.findByIdAndUpdate(
+            userId,
+            { company },
+            { new: true, fields: "email name surnames nif role status company" } // Devolvemos solo estos campos
+        );
+
+        if (!updatedUser) {
+            return handleHttpError(res, "USER_NOT_FOUND", 404);
+        }
+
+        res.json(updatedUser);
+    } catch (err) {
+        console.error(err);
+        handleHttpError(res, "ERROR_UPDATING_COMPANY");
+    }
+};
+
+module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl, updateCompanyCtrl };

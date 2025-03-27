@@ -37,4 +37,15 @@ const validatorPersonalData = [
     (req, res, next) => validateResults(req, res, next),
 ];
 
-module.exports = { validatorRegister, validatorLogin, validatorCode, validatorPersonalData }
+const validatorCompany = [
+    check("company.name").notEmpty().withMessage("El nombre de la compañía es obligatorio"),
+    check("company.cif").matches(/^[A-Z]\d{8}$/).withMessage("El CIF debe comenzar con una letra seguida de 8 números"),
+    check("company.street").notEmpty().withMessage("La calle es obligatoria"),
+    check("company.number").isNumeric().withMessage("El número debe ser un valor numérico"),
+    check("company.postal").isNumeric().withMessage("El código postal debe ser un número"),
+    check("company.city").notEmpty().withMessage("La ciudad es obligatoria"),
+    check("company.province").notEmpty().withMessage("La provincia es obligatoria"),
+    (req, res, next) => validateResults(req, res, next),
+];
+
+module.exports = { validatorRegister, validatorLogin, validatorCode, validatorPersonalData, validatorCompany }

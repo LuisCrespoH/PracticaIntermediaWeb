@@ -30,6 +30,15 @@ const UserScheme = new mongoose.Schema(
             type: Number,
             default: 0, // 0 = no validado, 1 = validado
             enum: [0, 1] // Solo puede ser 0 o 1
+        },
+        company: {
+            name: String,
+            cif: { type: String, unique: true, sparse: true },
+            street: String,
+            number: Number,
+            postal: Number,
+            city: String,
+            province: String
         }
     },
     {

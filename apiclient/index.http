@@ -33,3 +33,20 @@ Content-Type: application/json
   "surnames": "Garcia Medina",
   "nif": "12345678S"
 }
+
+###
+PATCH http://localhost:3001/api/auth/company
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1ODZmNjUxNmRkNzRlODJjYzAwMmQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDk1NTQyLCJleHAiOjE3NDMxMDI3NDJ9.fWjUVDTcsR8CdtsPPS7xf1YX_Mgk7Y--AxsbgdEmGKM
+Content-Type: application/json
+
+{
+  "company": {
+    "name": "Sarito L.C.",
+    "cif": "11112023L",
+    "street": "Bambu",
+    "number": 3,
+    "postal": 11112,
+    "city": "La Camella",
+    "province": "Santa Cruz de Tenerife"
+  }
+}
