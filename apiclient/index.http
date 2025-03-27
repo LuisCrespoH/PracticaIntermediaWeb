@@ -2,8 +2,26 @@ POST http://localhost:3001/api/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-"name": "luis",
+"name": "luis7tokenvalidacioncorrecto",
 "age": 21,
-"email": "emailtest@gmail.com",
-"password": "contratest1"
+"email": "emailtest7@gmail.com",
+"password": "contratest4"
+}
+
+###
+POST http://localhost:3001/api/auth/validation
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MzRiM2Y1YzQ2YjdhYTNlOWFlMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDc0NDgzLCJleHAiOjE3NDMwODE2ODN9.gkx4TSKtdU424mErcClOc5q7wIgRm0THSHK7JzIpQkM
+Content-Type: application/json
+
+{
+    "code": "269998"
+}
+
+###
+POST http://localhost:3001/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+"email": "emailtest7@gmail.com",
+"password": "contratest4"
 }

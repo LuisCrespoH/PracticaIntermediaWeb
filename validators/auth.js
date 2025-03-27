@@ -18,4 +18,14 @@ const validatorLogin = [
     return validateResults(req, res, next)
     }
 ]
-module.exports = { validatorRegister, validatorLogin }
+
+const validatorCode = [
+    check("code")
+        .isNumeric()
+        .isLength({ min: 6, max: 6 })
+        .withMessage("El código debe tener 6 dígitos numéricos"),
+    (req, res, next) => {
+        validateResults(req, res, next);
+    }
+];
+module.exports = { validatorRegister, validatorLogin, validatorCode }
