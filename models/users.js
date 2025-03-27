@@ -41,8 +41,10 @@ const UserScheme = new mongoose.Schema(
             province: String,
             url: String,
             logo: { type: String, default: '' }
-        }
+        },
+        deleted: { type: Boolean, default: false }
     },
+    
     {
         timestamps: true,
         versionKey: false

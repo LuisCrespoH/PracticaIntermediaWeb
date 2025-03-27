@@ -193,5 +193,28 @@ const getUserProfile = async (req, res) => {
         res.status(500).json({ message: 'Error obteniendo el usuario' });
     }
 };
+const deleteUser = async (req, res) => {
+    try {
+        const user = req.user; // Usuario autenticado extraído del token JWT
+        const softDelete = req.query.soft !== 'false'; // Si ?soft=false, será hard delete
 
-module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl, updateCompanyCtrl, getUserProfile };
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        if (softDelete) {
+            // Soft delete: Actualiza el campo "deleted" sin eliminar el documento
+            await usersModel.findByIdAndUpdate(user._id, { deleted: true });
+            return res.status(200).json({ message: 'Usuario eliminado (soft delete)' });
+        } else {
+            // Hard delete: Elimina el usuario de la base de datos
+            await usersModel.findByIdAndDelete(user._id);
+            return res.status(200).json({ message: 'Usuario eliminado permanentemente' });
+        }
+    } catch (error) {
+        console.error('Error eliminando usuario:', error);
+        res.status(500).json({ message: 'Error eliminando usuario' });
+    }
+};
+
+module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl, updateCompanyCtrl, getUserProfile, deleteUser };
