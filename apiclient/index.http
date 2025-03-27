@@ -50,3 +50,15 @@ Content-Type: application/json
     "province": "Santa Cruz de Tenerife"
   }
 }
+
+###
+POST http://localhost:3001/api/auth/logo HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1ODZmNjUxNmRkNzRlODJjYzAwMmQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDk1NTQyLCJleHAiOjE3NDMxMDI3NDJ9.fWjUVDTcsR8CdtsPPS7xf1YX_Mgk7Y--AxsbgdEmGKM
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name="image"; filename="bici.jpg"
+Content-Type: image/jpeg
+
+< ./bici.jpg
+--boundary123--
