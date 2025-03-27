@@ -33,8 +33,6 @@ const registerCtrl = async (req, res) => {
         const responseData = {
             token,
             user: {
-                name: dataUser.name,
-                age: dataUser.age,
                 email: dataUser.email,
                 role: dataUser.role,
                 status: dataUser.status
@@ -77,8 +75,6 @@ const loginCtrl = async (req, res) => {
         const data = {
             token: await tokenSign(user),
             user: {
-                name: user.name,
-                age: user.age,
                 email: user.email,
                 role: user.role,
                 status: user.status
