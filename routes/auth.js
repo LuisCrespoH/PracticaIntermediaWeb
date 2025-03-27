@@ -1,6 +1,6 @@
 const express = require("express")
-const { registerCtrl, loginCtrl, verifyCodeCtrl } = require("../controllers/auth")
-const { validatorRegister, validatorLogin, validatorCode } = require("../validators/auth")
+const { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl } = require("../controllers/auth")
+const { validatorRegister, validatorLogin, validatorCode, validatorPersonalData } = require("../validators/auth")
 const authMiddleware = require("../middleware/session");
 const router = express.Router()
 
@@ -12,6 +12,8 @@ router.post("/register", validatorRegister, registerCtrl)
 router.post("/login", validatorLogin, loginCtrl) 
 
 router.post("/validation", authMiddleware, validatorCode, verifyCodeCtrl);
+
+router.put("/register", authMiddleware, validatorPersonalData, updatePersonalDataCtrl);
 
 
 module.exports = router

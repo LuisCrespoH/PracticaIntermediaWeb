@@ -7,6 +7,9 @@ const UserScheme = new mongoose.Schema(
             unique: true
         },
         password: String,
+        name: { type: String, default: "" }, // Nuevo campo
+        surnames: { type: String, default: "" }, // Nuevo campo
+        nif: { type: String, unique: true, sparse: true },
         role: {
             type: ['user', 'admin'],
             default: 'user'

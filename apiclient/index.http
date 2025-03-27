@@ -23,3 +23,13 @@ Content-Type: application/json
 "email": "teemitolover@gmail.com",
 "password": "losratownes"
 }
+###
+PUT http://localhost:3001/api/auth/register
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1ODZmNjUxNmRkNzRlODJjYzAwMmQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDk1NTQyLCJleHAiOjE3NDMxMDI3NDJ9.fWjUVDTcsR8CdtsPPS7xf1YX_Mgk7Y--AxsbgdEmGKM
+Content-Type: application/json
+
+{
+  "name": "Sara",
+  "surnames": "Garcia Medina",
+  "nif": "12345678S"
+}

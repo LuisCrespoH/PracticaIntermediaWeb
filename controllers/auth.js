@@ -129,5 +129,32 @@ const verifyCodeCtrl = async (req, res) => {
         handleHttpError(res, "ERROR_VERIFY_CODE");
     }
 };
+/**
+ * Actualiza los datos personales del usuario autenticado
+ * @param {*} req 
+ * @param {*} res 
+ */
+const updatePersonalDataCtrl = async (req, res) => {
+    try {
+        const userId = req.user._id; // ID del usuario autenticado a partir del token
+        const { name, surnames, nif } = matchedData(req); // Validar datos del cuerpo
 
-module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl };
+        // Actualizar usuario en la base de datos
+        const updatedUser = await usersModel.findByIdAndUpdate(
+            userId,
+            { name, surnames, nif },
+            { new: true, fields: "email name surnames nif role status" } // Solo devuelve estos campos
+        );
+
+        if (!updatedUser) {
+            return handleHttpError(res, "USER_NOT_FOUND", 404);
+        }
+
+        res.json(updatedUser);
+    } catch (err) {
+        console.error(err);
+        handleHttpError(res, "ERROR_UPDATING_USER");
+    }
+};
+
+module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl };
