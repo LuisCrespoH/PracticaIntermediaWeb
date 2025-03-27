@@ -179,4 +179,19 @@ const updateCompanyCtrl = async (req, res) => {
     }
 };
 
-module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl, updateCompanyCtrl };
+const getUserProfile = async (req, res) => {
+    try {
+        const user = req.user; // Ya está en req gracias al middleware
+
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Error obteniendo el usuario:', error);
+        res.status(500).json({ message: 'Error obteniendo el usuario' });
+    }
+};
+
+module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl, updateCompanyCtrl, getUserProfile };
