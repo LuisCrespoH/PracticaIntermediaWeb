@@ -3,6 +3,7 @@ const { tokenSign } = require("../utils/handleJwt");
 const { encrypt, compare } = require("../utils/handlePassword");
 const { handleHttpError } = require("../utils/handleError");
 const { generateCode } = require("../utils/handleCode");
+const uploadToPinata = require('../utils/handleUploadIPFS.js')
 const usersModel = require("../models/users");
 
 /**
@@ -217,4 +218,46 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl, updateCompanyCtrl, getUserProfile, deleteUser };
+const uploadImage = async (req, res) => {
+    try {
+        const id = req.user.id; // Obtiene el ID del usuario autenticado
+
+        if (!req.file) {
+            return res.status(400).send("No file uploaded");
+        }
+
+        const fileBuffer = req.file.buffer;
+        const fileName = req.file.originalname;
+
+        // Subir la imagen a Pinata
+        const pinataResponse = await uploadToPinata(fileBuffer, fileName);
+        if (!pinataResponse || !pinataResponse.IpfsHash) {
+            throw new Error("Failed to upload to Pinata");
+        }
+
+        const ipfsUrl = `https://${process.env.PINATA_GATEWAY_URL}/ipfs/${pinataResponse.IpfsHash}`;
+
+        // Actualizar el usuario con la URL y el filename
+        const updatedUser = await usersModel.findByIdAndUpdate(
+            id,
+            {
+                $set: {
+                    "company.logo": fileName,
+                    "company.url": ipfsUrl
+                }
+            },
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).send("User not found");
+        }
+
+        res.send(updatedUser);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("ERROR_UPLOAD_COMPANY_IMAGE");
+    }
+};
+
+module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl, updateCompanyCtrl, getUserProfile, deleteUser, uploadImage };

@@ -2,7 +2,7 @@ POST http://localhost:3001/api/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-"email": "testdelete@gmail.com",
+"email": "testlogo@gmail.com",
 "password": "testcontra"
 }
 
@@ -36,24 +36,24 @@ Content-Type: application/json
 
 ###
 PATCH http://localhost:3001/api/auth/company
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1ODZmNjUxNmRkNzRlODJjYzAwMmQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDk1NTQyLCJleHAiOjE3NDMxMDI3NDJ9.fWjUVDTcsR8CdtsPPS7xf1YX_Mgk7Y--AxsbgdEmGKM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U2NzJkZWE5ZjVmYmEwYTM4ZDk1NTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMTU1OTM0LCJleHAiOjE3NDMxNjMxMzR9.1S0DBCAjKLkqoeM7Kp3x88gIctEEugiYl6yN1rA2Nvg
 Content-Type: application/json
 
 {
   "company": {
-    "name": "Sarito L.C.",
+    "name": "cresher L.C.",
     "cif": "11112023L",
-    "street": "Bambu",
+    "street": "calle",
     "number": 3,
     "postal": 11112,
-    "city": "La Camella",
-    "province": "Santa Cruz de Tenerife"
+    "city": "La madre",
+    "province": "Tenerife"
   }
 }
 
 ###
 POST http://localhost:3001/api/auth/logo HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1ODZmNjUxNmRkNzRlODJjYzAwMmQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDk1NTQyLCJleHAiOjE3NDMxMDI3NDJ9.fWjUVDTcsR8CdtsPPS7xf1YX_Mgk7Y--AxsbgdEmGKM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U2NzJkZWE5ZjVmYmEwYTM4ZDk1NTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMTU1OTM0LCJleHAiOjE3NDMxNjMxMzR9.1S0DBCAjKLkqoeM7Kp3x88gIctEEugiYl6yN1rA2Nvg
 Content-Type: multipart/form-data; boundary=boundary123
 
 --boundary123
@@ -65,7 +65,8 @@ Content-Type: image/jpeg
 
 ###
 GET http://localhost:3001/api/auth/profile 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1YTZkOGNmNDdhMTBkMjdhZGU2OTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMTAzNzA0LCJleHAiOjE3NDMxMTA5MDR9.in75e5RPYmkk6rMUQWWnTwJwNcey8Y1RIXDsCGEd-Eg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U2NzJkZWE5ZjVmYmEwYTM4ZDk1NTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMTU1OTM0LCJleHAiOjE3NDMxNjMxMzR9.1S0DBCAjKLkqoeM7Kp3x88gIctEEugiYl6yN1rA2Nvg
+
 
 ###
 DELETE http://localhost:3001/api/auth/delete

@@ -40,7 +40,7 @@ const UserScheme = new mongoose.Schema(
             city: String,
             province: String,
             url: String,
-            logo: { type: String, default: '' }
+            logo: String
         },
         deleted: { type: Boolean, default: false }
     },
