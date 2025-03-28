@@ -57,10 +57,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U2NzJkZ
 Content-Type: multipart/form-data; boundary=boundary123
 
 --boundary123
-Content-Disposition: form-data; name="image"; filename="bici.jpg"
+Content-Disposition: form-data; name="image"; filename="logo.jpg"
 Content-Type: image/jpeg
 
-< ./bici.jpg
+< ./logo.jpg
 --boundary123--
 
 ###

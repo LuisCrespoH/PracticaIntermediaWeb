@@ -246,7 +246,7 @@ const uploadImage = async (req, res) => {
                     "company.url": ipfsUrl
                 }
             },
-            { new: true }
+            { new: true, select: "-password -code -attempts" } // Excluir campos sensibles
         );
 
         if (!updatedUser) {
@@ -259,5 +259,6 @@ const uploadImage = async (req, res) => {
         res.status(500).send("ERROR_UPLOAD_COMPANY_IMAGE");
     }
 };
+
 
 module.exports = { registerCtrl, loginCtrl, verifyCodeCtrl, updatePersonalDataCtrl, updateCompanyCtrl, getUserProfile, deleteUser, uploadImage };
