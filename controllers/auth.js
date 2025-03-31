@@ -17,7 +17,7 @@ const registerCtrl = async (req, res) => {
 
         const existingUser = await usersModel.findOne({ email: req.email });
         if (existingUser) {
-            // Si el correo ya existe, devolver un error 409
+            // Si el correo ya existe, devuelve un error 409
             return handleHttpError(res, "EMAIL_ALREADY_REGISTERED", 409);
         }
         const password = await encrypt(req.password);
@@ -30,7 +30,7 @@ const registerCtrl = async (req, res) => {
         // Generamos el token
         const token = await tokenSign(dataUser);
 
-        // Construimos la respuesta con solo los campos requeridos
+        // Construimos la respuesta con solo los campos requeridos (sin la contraseña ni codigo)
         const responseData = {
             token,
             user: {
@@ -70,7 +70,6 @@ const loginCtrl = async (req, res) => {
             return;
         }
 
-        // Eliminamos la contraseña antes de enviarla
         user.set('password', undefined, { strict: false });
 
         const data = {

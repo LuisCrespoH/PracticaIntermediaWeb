@@ -7,15 +7,15 @@ const UserScheme = new mongoose.Schema(
             unique: true
         },
         password: String,
-        name: { type: String, default: "" }, // Nuevo campo
-        surnames: { type: String, default: "" }, // Nuevo campo
+        name: { type: String, default: "" },
+        surnames: { type: String, default: "" },
         nif: { type: String, unique: true, sparse: true },
         role: {
             type: ['user', 'admin'],
             default: 'user'
         },
         code: {
-            type: String, // Lo guardamos como string para mantener los ceros iniciales (ej: "045678")
+            type: String, // Lo guardamos como string para mantener los ceros iniciales
             required: true,
             unique: true,
             minlength: 6,
